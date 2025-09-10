@@ -6,16 +6,17 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mx.InmoICPE.Dao.PicturesDao;
-import com.mx.InmoICPE.Entities.Pictures;
+import com.mx.InmoICPE.Dao.VideosDao;
+import com.mx.InmoICPE.Entities.Videos;
+
 
 @Service
 public class ImpVideos implements Metodos{
-	@Autowired PicturesDao dao;
+	@Autowired VideosDao dao;
 
 	public boolean eliminar(int id) {
 		try {
-			Pictures found = dao.findById(id).orElse(null);
+			Videos found = dao.findById(id).orElse(null);
 			if(found == null) {
 				System.out.println("No se econtro el resultado");
 			}else {
@@ -28,7 +29,7 @@ public class ImpVideos implements Metodos{
 		return false;
 	}
 
-	public Pictures buscar(int id) {
+	public Videos buscar(int id) {
 		try {
 			return dao.findById(id).orElse(null);
 		}catch(Exception ex) {
@@ -38,27 +39,26 @@ public class ImpVideos implements Metodos{
 	}
 
 	public List<Object> listar() {
-		List<Pictures> lista = (List<Pictures>) dao.findAll();
+		List<Videos> lista = (List<Videos>) dao.findAll();
 		return lista.stream().collect(Collectors.toList());
 	}
 
 	@Override
-	public boolean guardar(Object obj) {
-		Pictures cast = (Pictures) obj;
+	public Object guardar(Object obj) {
+		Videos cast = (Videos) obj;
 		try {
-			dao.save(cast);
-			return true;
+			return dao.save(cast);
 		}catch(Exception ex) {
 			System.out.println("Error al guardar");
 		}
-		return false;
+		return null;
 	}
 
 	@Override
 	public boolean editar(Object obj) {
 		try {
-			Pictures cast = (Pictures) obj;
-			Pictures found = dao.findById(cast.getId()).orElse(null);
+			Videos cast = (Videos) obj;
+			Videos found = dao.findById(cast.getId()).orElse(null);
 			if(found == null) {
 				System.out.println("No se econtro el resultado");
 			}else {
