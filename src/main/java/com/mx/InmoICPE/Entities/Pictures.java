@@ -1,5 +1,7 @@
 package com.mx.InmoICPE.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,5 +26,6 @@ public class Pictures {
 	
 	@ManyToOne
 	@JoinColumn(name = "REAL_ESTATE_ID")
+	@JsonIgnore
 	RealEstates realEstate;
 }

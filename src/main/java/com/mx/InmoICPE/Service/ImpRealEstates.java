@@ -43,15 +43,14 @@ public class ImpRealEstates implements Metodos{
 	}
 
 	@Override
-	public boolean guardar(Object obj) {
+	public Object guardar(Object obj) {
 		RealEstates cast = (RealEstates) obj;
 		try {
-			dao.save(cast);
-			return true;
+			return dao.save(cast);
 		}catch(Exception ex) {
 			System.out.println("Error al guardar");
 		}
-		return false;
+		return null;
 	}
 
 	@Override
