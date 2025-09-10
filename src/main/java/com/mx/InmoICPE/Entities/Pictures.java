@@ -1,6 +1,6 @@
 package com.mx.InmoICPE.Entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,6 +18,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@JsonIgnoreProperties("realEstate")
 public class Pictures {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +27,5 @@ public class Pictures {
 	
 	@ManyToOne
 	@JoinColumn(name = "REAL_ESTATE_ID")
-	@JsonIgnore
 	RealEstates realEstate;
 }
